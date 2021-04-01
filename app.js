@@ -4,6 +4,7 @@ const express = require('express');
 const routes = require('./routes');
 const cors = require('cors')
 const bodyParser = require("body-parser")
+const passport = require("passport");
 require('./config/passport')(passport)
 
 
@@ -26,6 +27,7 @@ app.get('/api/', (req, res) => {
 
 app.use('/api/examples', routes.example);
 app.use('/api/users', routes.user);
+app.use('/api/search', routes.search);
 
 // Server
 const server = app.listen(PORT, () => console.log(`Server is running on PORT: ${PORT}`));

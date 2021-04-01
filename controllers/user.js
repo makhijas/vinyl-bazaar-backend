@@ -54,6 +54,11 @@ const register = (req, res)=> {
     })
     .catch(err => console.log("Error finding user", err))
 }
+const profile = async (req,res) => {
+   console.log("I DO NOTHING")
+}
+
+
 
 const login = async (req,res) => {
         //POST route - finding user and returning user

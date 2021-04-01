@@ -1,3 +1,4 @@
+const { default: axios } = require('axios');
 const db = require('../models');
 
 const index = (req, res) => {
@@ -20,6 +21,19 @@ const show = (req, res) => {
         if (err) console.log('Error in example#show:', err);
         res.json(foundExample);
     });
+};
+
+
+const dumb = (req, res) => {
+    // Purpose: Fetch one example from DB and return
+    //let searchTerm = req.body.
+    console.log(req.body)
+    let searchTerm = req.body.term
+    let discogsUrl = "https://api.discogs.com/database/search?release_title=" + searchTerm + "&key=tyUsvIrblYOpTSJKlFiz&secret=dvbIgifMTdHKdtQFwLIYdHZltjfQvyCw";
+    axios.get(discogsUrl).then(discogsResponse => {
+        console.log(discogsResponse.data);
+        res.send(discogsResponse.data);
+    })
 };
 
 const create = (req, res) => {
@@ -67,18 +81,6 @@ module.exports = {
     create,
     update,
     destroy,
+    dumb
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////
-// DON'T USE YET - Not tested
-// const query = (req, res) => {
-//     // Purpose: Fetch one example via query from DB and return
-//     console.log('=====> Inside "query" POST /examples/query');
-//     console.log('=====> req.query');
-//     console.log(req.query); // object using for doing a query search on an example
-
-//     db.Example.find(req.query, (err, foundExample) => {
-//         if (err) console.log('Error in example#query:', err);
-//         res.json(foundExample);
-//     });
-// }
