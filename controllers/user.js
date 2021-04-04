@@ -68,6 +68,7 @@ const login = async (req,res) => {
 
         const foundUser = await db.User.findOne({ email: req.body.email })
         if (foundUser) {
+            // console.log(email)
             // user is in the DB
             let isMatch = await bcrypt.compare(req.body.password, foundUser.password);
             //bcrypt.compare will unhash the saved password: foundUser.password 

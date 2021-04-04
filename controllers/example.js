@@ -29,8 +29,10 @@ const dumb = (req, res) => {
     //let searchTerm = req.body.
     console.log(req.body)
     let searchTerm = req.body.term
-    let discogsUrl = "https://api.discogs.com/database/search?release_title=" + searchTerm + "&key=tyUsvIrblYOpTSJKlFiz&secret=dvbIgifMTdHKdtQFwLIYdHZltjfQvyCw";
+    let secret = process.env.APISECRETKEY
+    let discogsUrl = "https://api.discogs.com/database/search?release_title=" + searchTerm + "&key=tyUsvIrblYOpTSJKlFiz&secret=" + secret;
     axios.get(discogsUrl).then(discogsResponse => {
+        console.log("****DATA FROM BACKEND****")
         console.log(discogsResponse.data);
         res.send(discogsResponse.data);
     })
