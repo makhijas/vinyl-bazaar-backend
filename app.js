@@ -28,6 +28,8 @@ app.get('/api/', (req, res) => {
 app.use('/api/examples', routes.example);
 app.use('/api/users', routes.user);
 app.use('/api/search', routes.search);
+app.use('/api/bounty', routes.bounty);
+app.use('/api/album', routes.album);
 
 // Server
 const server = app.listen(PORT, () => console.log(`Server is running on PORT: ${PORT}`));
